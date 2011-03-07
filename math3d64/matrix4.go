@@ -35,6 +35,9 @@ func MakeMatrix4I() Matrix4 {
 		0, 0, 0, 1}[:]
 }
 
+/*
+untested code
+*/
 func MakeRotationMatrix(look, tmpUp Vector3) Matrix4 {
 
 	look = look.Copy().Normalize()
@@ -82,42 +85,18 @@ func (m Matrix4) Sub(q Matrix4) Matrix4 {
 }
 
 func (m Matrix4) MakeZero() Matrix4 {
-	m[0] = .0
-	m[1] = .0
-	m[2] = .0
-	m[3] = .0
-	m[4] = .0
-	m[5] = .0
-	m[6] = .0
-	m[7] = .0
-	m[8] = .0
-	m[9] = .0
-	m[10] = .0
-	m[11] = .0
-	m[12] = .0
-	m[13] = .0
-	m[14] = .0
-	m[15] = .0
+	m[0],m[1],m[2],m[3] = 0,0,0,0
+	m[4],m[5],m[6],m[7] = 0,0,0,0
+	m[8],m[9],m[10],m[11] = 0,0,0,0
+	m[12],m[13],m[14],m[15] = 0,0,0,0
 	return m
 }
 
 func (m Matrix4) MakeIdentity() Matrix4 {
-	m[0] = 1.
-	m[5] = 1.
-	m[10] = 1.
-	m[15] = 1.0
-	m[1] = .0
-	m[2] = .0
-	m[3] = .0
-	m[4] = .0
-	m[6] = .0
-	m[7] = .0
-	m[8] = .0
-	m[9] = .0
-	m[11] = .0
-	m[12] = .0
-	m[13] = .0
-	m[14] = .0
+	m[0],m[1],m[2],m[3] = 1,0,0,0
+	m[4],m[5],m[6],m[7] = 0,1,0,0
+	m[8],m[9],m[10],m[11] = 0,0,1,0
+	m[12],m[13],m[14],m[15] = 0,0,0,1
 	return m
 }
 
@@ -245,21 +224,6 @@ func (m Matrix4) Transpose() Matrix4 {
 	m[3], m[12], m[6], m[9] = m[12], m[3], m[9], m[6]
 	m[11], m[14], m[13], m[7] = m[14], m[11], m[7], m[13]
 
-	/* why won't this code work? 
-	tmp :=m[1]
-	tmp=m[1]; m[1]=m[4];m[4]=tmp;
-	tmp=m[2]; m[2]=m[8];m[8]=tmp;
-	tmp=m[3]; m[3]=m[12];m[12]=tmp;
-	tmp=m[4]; m[4]=m[1];m[1]=tmp;
-	tmp=m[6]; m[6]=m[9];m[9]=tmp;
-	tmp=m[7]; m[7]=m[13];m[13]=tmp;
-	tmp=m[8]; m[8]=m[2];m[2]=tmp;
-	tmp=m[9]; m[9]=m[6];m[6]=tmp;
-	tmp=m[11]; m[11]=m[14];m[14]=tmp;
-	tmp=m[12]; m[12]=m[3];m[3]=tmp;
-	tmp=m[13]; m[13]=m[7];m[7]=tmp;
-	tmp=m[14]; m[14]=m[11];m[11]=tmp;
-	*/
 	return m
 }
 
@@ -312,7 +276,7 @@ func (m Matrix4) ToQuaternion() Quaternion {
 	// article "HQuaternion Calculus and Fast Animation".
 	toQuaternionNext := []int{1, 2, 0}
 
-	q := Quaternion{1., 2., 3., 4.}
+	q := Quaternion{0,0,0,0}
 	//fmt.Println("q = ", q)
 	trace := m[0] + m[5] + m[10]
 	var root float64
@@ -353,6 +317,11 @@ func (m Matrix4) String() string {
 	// output in octave format for easy testing
 	return fmt.Sprintf("[%.5f,%.5f,%.5f,%.5f;%.5f,%.5f,%.5f,%.5f;%.5f,%.5f,%.5f,%.5f;%.5f,%.5f,%.5f,%.5f]",
 		m[0], m[4], m[8], m[12],
+		m[1], m[5], m[9], m[13],
+		m[2], m[6], m[10], m[14],
+		m[3], m[7], m[11], m[15])
+}
+ m[12],
 		m[1], m[5], m[9], m[13],
 		m[2], m[6], m[10], m[14],
 		m[3], m[7], m[11], m[15])
