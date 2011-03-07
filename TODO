@@ -1,0 +1,8 @@
+* The matrix and vector functions sometimes modifies the object (*this) and sometimes 
+they return the result in a copy. Always use Copy() on objects you want to remain as they were.
+
+constMatrix Matrix4
+result := constMatrixA.Copy().MultS(math.Pi)
+
+
+* More tests needs to be added
