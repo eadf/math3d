@@ -7,13 +7,13 @@ include $(GOROOT)/src/Make.inc
 .PHONY: all install clean
 
 all:
-	gomake -C math3df
-	gomake -C math3dd
+	gomake -C math3d32
+	gomake -C math3d64
 
 install: all
-	gomake -C math3df install
-	gomake -C math3dd install
+	gomake -C math3d32 install
+	gomake -C math3d64 install
 
 clean:
-	gomake -C math3df clean
-	gomake -C math3dd clean
+	gomake -C math3d32 clean
+	gomake -C math3d64 clean

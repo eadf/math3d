@@ -4,7 +4,7 @@
 
 include $(GOROOT)/src/Make.inc
 
-TARG=math3d/math3df
+TARG=math3d/math3d64
 GOFILES=\
 	vector3.go\
 	vector4.go\

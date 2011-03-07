@@ -6,26 +6,26 @@ http://www.boost.org/LICENSE_1_0.txt
 http://www.geometrictools.com/License/Boost/LICENSE_1_0.txt
 */
 
-package math3dd
-//This code is auto generated from the math3df package. Do not edit.
+package math3d64
+//This code is auto generated from the math3d32 package. Do not edit.
 import "math"
 
 
 
 const internalε float64 = 0.000001
-const internalεε float64 = internalε*internalε
+const internalεε float64 = internalε * internalε
 
-const Rad2Deg float64 = float64(180.0/math.Pi)
-const Deg2Rad float64 = float64(math.Pi/180.0)
+const Rad2Deg float64 = float64(180.0 / math.Pi)
+const Deg2Rad float64 = float64(math.Pi / 180.0)
 
 // some ready converted float64 values
 const Pi float64 = math.Pi
-const TwoPi float64 = float64(math.Pi*2.)
-const PiHalf float64 = float64(math.Pi*.5)
+const TwoPi float64 = float64(math.Pi * 2.)
+const PiHalf float64 = float64(math.Pi * .5)
 const Epsilon float64 = 0.000001
 
 // these functions only exists so that we don't have to 
-// use ugly float64() and float64() convertions all over the math3df code 
+// use ugly float64() and float64() convertions all over the math3d32 code 
 func Sin(a float64) float64 {
 	return float64(math.Sin(float64(a)))
 }
@@ -55,32 +55,32 @@ func Sqrt(a float64) float64 {
 	return float64(math.Sqrt(float64(a)))
 }
 
-func Min(a,b float64) float64 {
+func Min(a, b float64) float64 {
 	if a < b {
 		return a
 	}
 	return b
 }
 
-func Max(a,b float64) float64 {
+func Max(a, b float64) float64 {
 	if a > b {
 		return a
 	}
 	return b
 }
 
-func AbsMin(a,b float64) float64 {
+func AbsMin(a, b float64) float64 {
 	if math.Fabs(a) < math.Fabs(b) {
 		return a
 	}
 	return b
 }
 
-func AbsMin3(a,b,c float64) float64 {
+func AbsMin3(a, b, c float64) float64 {
 	fabsa := math.Fabs(a)
 	fabsb := math.Fabs(b)
 	fabsc := math.Fabs(c)
-	
+
 	if fabsa < fabsb && fabsa < fabsc {
 		return a
 	}
@@ -90,7 +90,7 @@ func AbsMin3(a,b,c float64) float64 {
 	return c
 }
 
-func AbsMax(a,b float64) float64 {
+func AbsMax(a, b float64) float64 {
 	if math.Fabs(a) > math.Fabs(b) {
 		return a
 	}
@@ -99,12 +99,12 @@ func AbsMax(a,b float64) float64 {
 
 // return the smallest angle between two radians
 // if any of the angles are larger than -+2*Pi it won't work
-func MinAngleBetween(a1,a2 float64) float64 {
-	diff1 := a1-a2
-	diff2 := a1-a2 + TwoPi	
-	diff3 := a1-a2 - TwoPi
-	
-	return AbsMin3(diff1,diff2,diff3)
+func MinAngleBetween(a1, a2 float64) float64 {
+	diff1 := a1 - a2
+	diff2 := a1 - a2 + TwoPi
+	diff3 := a1 - a2 - TwoPi
+
+	return AbsMin3(diff1, diff2, diff3)
 }
 
 /*
@@ -128,7 +128,7 @@ func MinAngleBetweenVersion2(a1,a2 float64) float64 {
 /*
 Tests to see if the difference between two floats exceeds ε.
 */
-func ApproxEquals(f1, f2 float64,ε float64) bool {
+func ApproxEquals(f1, f2 float64, ε float64) bool {
 	if math.Fabs(f1-f2) > ε {
 		//print ("diff is ", math.Fabs(f1-f2))
 		return false
